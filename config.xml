@@ -18,7 +18,7 @@
    <preference name="target-device" value="universal" />
    <preference name="android-minSdkVersion" value="7" />
    <preference name="android-installLocation" value="auto" />
-   <preference name="fullscreen" value="false" />
+   <preference name="fullscreen" value="true" />
    
    <preference name="SplashScreen" value="splash" /> 
    <preference name="SplashScreenDelay" value="4000" /> 
@@ -41,6 +41,16 @@
    <gap:plugin name="org.apache.cordova.network-information" />
    <gap:plugin name="org.apache.cordova.splashscreen" />
    <gap:plugin name="org.apache.cordova.vibration" />
+   <gap:config-file platform="android" parent="/manifest">
+        <supports-screens 
+            android:xlargeScreens="true" 
+            android:largeScreens="true" 
+            android:smallScreens="true" />
+        <application android:theme="@android:style/Theme.NoTitleBar" >
+            <activity android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            </activity>
+        </application>
+    </gap:config-file>
   
     <icon src="icon/48.png" /> 
    <icon src="icon/24.png" gap:platform="android" gap:qualifier="ldpi" /> 

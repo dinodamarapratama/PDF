@@ -32,39 +32,28 @@ doc.setFont("courier");
 doc.setFontType("normal");
 doc.text(20, 30, 'This is a PDF document generated using JSPDF.');
 doc.text(20, 50, 'YES, Inside of PhoneGap!');
- 
+ doc.save();
 var pdfOutput = doc.output();
-alert( pdfOutput );
  
 //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
-alert("file system...");
 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
- 
-   alert(fileSystem.name);
-   alert(fileSystem.root.name);
-   alert(fileSystem.root.fullPath);
  
    fileSystem.root.getFile("test.pdf", {create: true}, function(entry) {
       var fileEntry = entry;
-      alert(entry);
  
       entry.createWriter(function(writer) {
          writer.onwrite = function(evt) {
-         alert("write success");
+         alert("write success, check SD Card");
       };
  
-      alert("writing to file");
          writer.write( pdfOutput );
       }, function(error) {
-         alert(error);
       });
  
    }, function(error){
-      alert(error);
    });
 },
 function(event){
- calert( evt.target.error.code );
 });
 
    }
